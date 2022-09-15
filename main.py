@@ -1,6 +1,8 @@
 import subprocess as sub
 from colorama import init
 import re
+import numpy as np
+import sympy as sp
 
 
 def clear(shell=True):
@@ -26,14 +28,14 @@ class Main():
         self.num2 = input(f"{self.num1}x_\n>>> ")
         clear()
         print("table dimensions")
-        table = f"{self.num1}x{self.num2}"
-        print(table)
+        self.table = f"{self.num1}x{self.num2}"
+        print(self.table)
 
         if re.search('[a-zA-Z]', self.num1) or re.search('[a-zA-Z]', self.num2):
           print("num1/2 detected something that isnt a number!")
         else:
-            self.num1 = int(self.num1)
-            self.num2 = int(self.num2)
+            self.num1 = float(self.num1)
+            self.num2 = float(self.num2)
     
     def buildTable(self):
         self.numList = []
@@ -41,19 +43,31 @@ class Main():
 
         self.counter = 0
         self.rowCounter = 1
+        
 
-        for i in range(self.num2):
-            for i in range(self.num2):
+        for i in np.arange(self.num1):
+            for k in np.arange(self.num2):
                 self.counter += 1
                 self.pre.append(input(f"{self.rowCounter}, {self.counter} = "))
             self.rowCounter += 1
             self.counter = 0
             self.numList.append(self.pre)
             self.pre = []
+            clear()
+            print(self.table)
         
+        self.matrix_ = sp.Matrix(self.numList)
+
         for row in self.numList:
             row = str(row)
-            print(row.replace(",", ""))
+            print(row.replace("'", ""))
+        
+        print("\nrref:")
+
+        for row in self.numList:
+            self.answer = self.matrix_.rref()
+            print(self.answer)
+            
                 
 
 
