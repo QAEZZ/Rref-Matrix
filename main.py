@@ -51,8 +51,9 @@ class Main():
             self.numList.append(self.pre)
             self.pre = []
         
-        for i in self.numList():
-            print(self.numList[i])
+        for row in self.numList:
+            row = str(row)
+            print(row.replace(",", ""))
                 
 
 
