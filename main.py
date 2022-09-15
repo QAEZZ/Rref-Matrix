@@ -69,6 +69,11 @@ class Main():
             print(self.answer)
             
                 
-
+"""
+3x4
+30 60 60 360
+1  1  1  7
+2 -1  0  0
+"""
 
 Main()
