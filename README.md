@@ -1,2 +1,4 @@
 # TI-83n84-Matrix
-Ti-83/84 Matrix function thing in python
+returns the reduced row echelon form of a matrix
+
+pretty simple, made it because I was bored.
