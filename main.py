@@ -3,6 +3,7 @@ from colorama import init
 import re
 import numpy as np
 import sympy as sp
+import json
 
 
 def clear(shell=True):
@@ -57,6 +58,9 @@ class Main():
             print(self.table)
 
         self.matrix_ = sp.Matrix(self.numList)
+        self.answer = str(self.matrix_.rref(pivots=False))
+        self.answerList = self.answer.replace("Matrix(", "").replace(")", "")
+        self.answer = json.loads(self.answerList)
 
         for row in self.numList:
             row = str(row)
@@ -64,9 +68,11 @@ class Main():
 
         print("\nrref:")
 
+        self.counter = 0
         for row in self.numList:
-            self.answer = self.matrix_.rref()
-            print(self.answer)
+            print(self.answer[self.counter])
+            self.counter += 1
+        
 
 
 """
@@ -74,18 +80,9 @@ class Main():
 30 60 60 360
 1  1  1  7
 2 -1  0  0
-"""
-"""
-tuple
 
-(Matrix([
-[1, 0, 0, 16/3],
-[0, 1, 0, 32/3],
-[0, 0, 1,   -9]]), (0, 1, 2))
-
-compact
-
-(Matrix([[1, 0, 0, 16/3],[0, 1, 0, 32/3],[0, 0, 1, -9]]), (0, 1, 2))
+returns:
+Matrix([[1, 0, 0, 2], [0, 1, 0, 4], [0, 0, 1, 1]])
 """
 
 Main()
